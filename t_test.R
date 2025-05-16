@@ -23,7 +23,7 @@ for (j in 1:6) {
 
 # perform welch t-test
 
-qnum <- 5 # tweak this for each question between 1 and 6
+qnum <- 4 # tweak this for each question between 1 and 6
 t.test(qsnonmale[[qnum]],qsmale[[qnum]])
 
 # # calculate averages for each (was unnecessary)
