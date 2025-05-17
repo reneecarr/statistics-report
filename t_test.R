@@ -10,12 +10,14 @@ surveydata2 <- read_excel("Book3.xlsx", sheet = 2)
 qsnonmale <- list()
 qsmale <- list()
 
-for (j in 1:6) {
+for (j in 1:20) {
   q1 <- numeric(0)
   q2 <- numeric(0)
-  for (i in 2:6) {
-    q1 <- c(q1, rep(i-1,surveydata1[j,i]))
-    q2 <- c(q2, rep(i-1,surveydata2[j,i]))
+  if (is.na(surveydata1[j,2]) == FALSE) {
+    for (i in 2:6) {
+      q1 <- c(q1, rep(i-1,surveydata1[j,i]))
+      q2 <- c(q2, rep(i-1,surveydata2[j,i]))
+    }
   }
   qsnonmale[[j]] <- q1
   qsmale[[j]] <- q2
@@ -23,7 +25,7 @@ for (j in 1:6) {
 
 # perform welch t-test
 
-qnum <- 4 # tweak this for each question between 1 and 6
+qnum <- 9 # tweak this for each question (1-6, 9-13, 16-20)
 t.test(qsnonmale[[qnum]],qsmale[[qnum]])
 
 # # calculate averages for each (was unnecessary)
